@@ -14,6 +14,14 @@ header {
     color: white;
 }
 
+.oswald-font{
+    font-family: "Oswald", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+}
+  
+
 .header-logo h1{
     font-size: 24px;
     margin: 0;
@@ -120,12 +128,12 @@ header {
     color: white;
     cursor: pointer;
     border-radius: 15%;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
-
-.locked .buy-btn {
-    background-color: gray;
-    cursor: not-allowed;
-}
+ .buy-btn:hover{
+        background-color: #70ff81; 
+        box-shadow: 0 0 15px #70ff81; 
+ }
 @media (min-width: 400px) {
     .product-grid {
         grid-template-columns: repeat(2, 1fr); /* 6 columns for wider screens */
