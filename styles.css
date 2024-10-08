@@ -17,20 +17,33 @@ header {
 .oswald-font{
     font-family: "Oswald", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 400;
+    font-weight: 600;
     font-style: normal;
 }
   
-
+.sixtyfour-convergence-font {
+    font-family: "Sixtyfour Convergence", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+      "BLED" 0,
+      "SCAN" 0,
+      "XELA" 0,
+      "YELA" 0;
+}
+  
 .header-logo h1{
     font-size: 24px;
     margin: 0;
     display: flex;
     align-items: center;
+    max-width: 250px;
 }
 
 .logo-img{
-    width: 50px;
+    width: flex;
+    max-width: 75px ;
     container: flex;
     text-align: center;
     margin-right: 10px;
@@ -93,6 +106,7 @@ header {
 
 .product-info {
     padding: 10px;
+    justify-items: end;
 }
 
 .price-info {
@@ -130,6 +144,8 @@ header {
     border-radius: 15%;
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
 }
+
+
  .buy-btn:hover{
         background-color: #70ff81; 
         box-shadow: 0 0 15px #70ff81; 
