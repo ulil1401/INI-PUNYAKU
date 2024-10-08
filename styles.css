@@ -140,6 +140,25 @@ header {
         grid-template-columns: repeat(3, 1fr); /* 6 columns for wider screens */
     }
 }
+@media (max-width: 605px) {
+    header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .nav-bar {
+        justify-content: center;
+        width: 100%;
+        margin-top: 10px;
+        gap: 5px;
+        flex-wrap: wrap;
+    }
+
+    .cart {
+        align-self: flex-end;
+        margin-top: 10px;
+    }
+}
 @media (min-width: 700px) {
     .product-grid {
         grid-template-columns: repeat(4, 1fr); /* 6 columns for wider screens */
