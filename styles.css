@@ -97,6 +97,9 @@ header {
     overflow: hidden;
     text-align: center;
     padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content:end;
 }
 
 .product-card img {
