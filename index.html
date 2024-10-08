@@ -27,8 +27,17 @@
             <button onclick="scrollToSection('to4')">Plushie</button>
         </div>
         <div class="cart">
-            <span>$1000,00</span>
-            <button class="buy-btn">
+            $
+            <span id="Bal"></span>
+            <div id="cart-popup" class="popup">
+                <div style="color: black;" class="popup-content">
+                    <h2>CART LIST</h2>
+                    <div id="cart-container"></div>
+                    <button onclick="checkout()">Checkout</button>
+                    <button class="close" onclick="closeCartPopup()">Close</button>
+                </div>
+            </div>
+            <button class="buy-btn" onclick="openCartPopup()">
                 <i class="fa-solid fa-cart-plus"></i>
             </button>
         </div>
@@ -38,31 +47,54 @@
         <h1 style="margin-left: 20px;" >PACKS</h1>
         <div class="product-grid">
             <div class="product-card">
-                <img src="JEPEGE/Card (1).png" alt="Epic Card Pack (32)">
-                <div class="price-info">
-                    <span class="quantity">Qty: 32</span>
-                    <span class="price">$75,20</span>
-                </div>
-                <div class="product-info">
-                    <p>Basic Card Pack (32)</p>
-                    <span>$125,00</span>
-                    <button class="buy-btn">
-                        <i class="fa-solid fa-cart-plus"></i>
-                    </button>
-                </div>
+            <img src="JEPEGE/Card (1).png" alt="Basic Card Pack (32)">
+            <div class="price-info">
+                <span class="quantity">Qty: 32</span>
+                <span class="price">$75,20</span>
             </div>
+            <div class="product-info">
+                <div id="popup-quantity-1" class="popup">
+                    <div class="popup-content">
+                        <h2 id="product-name-1">Basic Card Pack</h2>
+                        <div style="position:relative; left: 170px;">
+                            <input type="number" id="quantity-input-1" min="1" value="1" max="9999">
+                        </div>
+                        <button onclick="addProductToCart(1,'Basic Card Pack', 75.20); closePopup(1)">Add to Cart</button>
+                        <button class="close" onclick="closePopup(1)">Close</button>
+                    </div>
+                </div>
+                <p>Basic Card Pack (32)</p>
+                <span>$125,00</span>
+                <button class="buy-btn" onclick= "showQuantityInput(1,'Basic Card Pack (32)')">
+                    <i class="fa-solid fa-cart-plus"></i>
+                </button>
+            </div>
+        </div>
             <div class="product-card">
                 <img src="JEPEGE/Card (2).png" alt="Epic Card Pack (64)">
                 <div class="price-info">
-                    <span class="quantity">Qty: 32</span>
-                    <span class="price">$75,20</span>
+                    <span class="quantity">Qty: 64</span>
+                    <span class="price">$150.00</span>
                 </div>
                 <div class="product-info">
+                    <div id="popup-quantity-2" class="popup">
+                        <div class="popup-content">
+                            <h2 id="product-name-2">Basic Card Pack 64</h2>
+                            <div style="position:relative; left: 170px;">
+                                <input type="number" id="quantity-input-2" min="1" value="1" max="9999">
+                            </div>
+                            <button onclick="addProductToCart(2,'Basic Card Pack 64', 150.00); closePopup(2)">Add to Cart</button>
+                            <button class="close" onclick="closePopup(2)">Close</button>
+                        </div>
+                    </div>
                     <p>Basic Card Pack (64)</p>
                     <span>$900,00</span>
-                    <button class="buy-btn">
-                        <i class="fa-solid fa-cart-plus"></i>
-                    </button>
+                    <button class="buy-btn" onclick="showQuantityInput(2,'Basic Card Pack 64')"><i class="fa-solid fa-cart-plus"></i></button>
+
+                    <div id="quantity-input-2" class="quantity-input" style="display:none;">
+                        <input type="number" id="quantity-1" min="1" value="1" max="9999" width="50px">
+                        <button onclick="addProductToCart(2, 'Basic Card Pack(64)', 150.00)"><i class="fa-solid fa-circle-check"></i></button>
+                    </div>
                 </div>
             </div>
             <div class="product-card">
@@ -74,7 +106,7 @@
                 <div class="product-info">
                     <p>Basic Card Box (4)</p>
                     <span>$1200,00</span>
-                    <button class="buy-btn">
+                    <button class="buy-btn" onclick="addToCart({})">
                         <i class="fa-solid fa-cart-plus"></i>
                     </button>
                 </div>
@@ -88,7 +120,7 @@
                 <div class="product-info">
                     <p>Basic Card Box (8)</p>
                     <span>$1500,00</span>
-                    <button class="buy-btn">
+                    <button class="buy-btn" onclick="addToCart({})">
                         <i class="fa-solid fa-cart-plus"></i>
                     </button>
                 </div>
@@ -102,7 +134,7 @@
                 <div class="product-info">
                     <p>Rare Card Pack (32)</p>
                     <span>$125,00</span>
-                    <button class="buy-btn">
+                    <button class="buy-btn" onclick="addToCart({})">
                         <i class="fa-solid fa-cart-plus"></i>
                     </button>
                 </div>
@@ -116,7 +148,7 @@
                 <div class="product-info">
                     <p>Rare Card Pack (64)</p>
                     <span>$900,00</span>
-                    <button class="buy-btn">
+                    <button class="buy-btn" onclick="addToCart({})">
                         <i class="fa-solid fa-cart-plus"></i>
                     </button>
                 </div>
@@ -130,7 +162,7 @@
                 <div class="product-info">
                     <p>Rare Card Box (4)</p>
                     <span>$1200,00</span>
-                    <button class="buy-btn">
+                    <button class="buy-btn" onclick="addToCart({})">
                         <i class="fa-solid fa-cart-plus"></i>
                     </button>
                 </div>
@@ -144,7 +176,7 @@
                 <div class="product-info">
                     <p>Rare Card Box (8)</p>
                     <span>$1500,00</span>
-                    <button class="buy-btn">
+                    <button class="buy-btn" onclick="addToCart({})">
                         <i class="fa-solid fa-cart-plus"></i>
                     </button>
                 </div>
@@ -158,7 +190,7 @@
             <div class="product-info">
                 <p>Epic Card Pack (32)</p>
                 <span>$125,00</span>
-                <button class="buy-btn">
+                <button class="buy-btn" onclick="addToCart({})">
                     <i class="fa-solid fa-cart-plus"></i>
                 </button>
             </div>
@@ -172,7 +204,7 @@
             <div class="product-info">
                 <p>Epic Card Pack (64)</p>
                 <span>$900,00</span>
-                <button class="buy-btn">
+                <button class="buy-btn" onclick="addToCart({})">
                     <i class="fa-solid fa-cart-plus"></i>
                 </button>
             </div>
@@ -186,7 +218,7 @@
             <div class="product-info">
                 <p>Epic Card Box (4)</p>
                 <span>$1200,00</span>
-                <button class="buy-btn">
+                <button class="buy-btn" onclick="addToCart({})">
                     <i class="fa-solid fa-cart-plus"></i>
                 </button>
             </div>
@@ -200,7 +232,7 @@
             <div class="product-info">
                 <p>Epic Card Box (8)</p>
                 <span>$1500,00</span>
-                <button class="buy-btn">
+                <button class="buy-btn" onclick="addToCart({})">
                     <i class="fa-solid fa-cart-plus"></i>
                 </button>
             </div>
@@ -218,7 +250,7 @@
                 <div class="product-info">
                     <p>Cleanser</p>
                     <span>$125,00</span>
-                    <button class="buy-btn">
+                    <button class="buy-btn" onclick="addToCart({})">
                         <i class="fa-solid fa-cart-plus"></i>
                     </button>
                 </div>
@@ -232,7 +264,7 @@
                 <div class="product-info">
                     <p>Basic Card Pack (64)</p>
                     <span>$900,00</span>
-                    <button class="buy-btn">
+                    <button class="buy-btn" onclick="addToCart({})">
                         <i class="fa-solid fa-cart-plus"></i>
                     </button>
                 </div>
@@ -246,7 +278,7 @@
                 <div class="product-info">
                     <p>Basic Card Box (4)</p>
                     <span>$1200,00</span>
-                    <button class="buy-btn">
+                    <button class="buy-btn" onclick="addToCart({})">
                         <i class="fa-solid fa-cart-plus"></i>
                     </button>
                 </div>
@@ -260,7 +292,7 @@
                 <div class="product-info">
                     <p>Basic Card Box (8)</p>
                     <span>$1500,00</span>
-                    <button class="buy-btn">
+                    <button class="buy-btn" onclick="addToCart({})">
                         <i class="fa-solid fa-cart-plus"></i>
                     </button>
                 </div>
@@ -274,7 +306,7 @@
                 <div class="product-info">
                     <p>Rare Card Pack (32)</p>
                     <span>$125,00</span>
-                    <button class="buy-btn">
+                    <button class="buy-btn" onclick="addToCart({})">
                         <i class="fa-solid fa-cart-plus"></i>
                     </button>
                 </div>
@@ -288,7 +320,7 @@
                 <div class="product-info">
                     <p>Rare Card Pack (64)</p>
                     <span>$900,00</span>
-                    <button class="buy-btn">
+                    <button class="buy-btn" onclick="addToCart({})">
                         <i class="fa-solid fa-cart-plus"></i>
                     </button>
                 </div>
@@ -306,7 +338,7 @@
                 <div class="product-info">
                     <p>Cleanser</p>
                     <span>$125,00</span>
-                    <button class="buy-btn">
+                    <button class="buy-btn" onclick="addToCart({})">
                         <i class="fa-solid fa-cart-plus"></i>
                     </button>
                 </div>
@@ -320,7 +352,7 @@
                 <div class="product-info">
                     <p>Basic Card Pack (64)</p>
                     <span>$900,00</span>
-                    <button class="buy-btn">
+                    <button class="buy-btn" onclick="addToCart({})">
                         <i class="fa-solid fa-cart-plus"></i>
                     </button>
                 </div>
@@ -334,7 +366,7 @@
                 <div class="product-info">
                     <p>Basic Card Box (4)</p>
                     <span>$1200,00</span>
-                    <button class="buy-btn">
+                    <button class="buy-btn" onclick="addToCart({})">
                         <i class="fa-solid fa-cart-plus"></i>
                     </button>
                 </div>
@@ -348,7 +380,7 @@
                 <div class="product-info">
                     <p>Basic Card Box (8)</p>
                     <span>$1500,00</span>
-                    <button class="buy-btn">
+                    <button class="buy-btn" onclick="addToCart({})">
                         <i class="fa-solid fa-cart-plus"></i>
                     </button>
                 </div>
@@ -362,7 +394,7 @@
                 <div class="product-info">
                     <p>Rare Card Pack (32)</p>
                     <span>$125,00</span>
-                    <button class="buy-btn">
+                    <button class="buy-btn" onclick="addToCart({})">
                         <i class="fa-solid fa-cart-plus"></i>
                     </button>
                 </div>
@@ -376,7 +408,7 @@
                 <div class="product-info">
                     <p>Cleanser</p>
                     <span>$125,00</span>
-                    <button class="buy-btn">
+                    <button class="buy-btn" onclick="addToCart({})">
                         <i class="fa-solid fa-cart-plus"></i>
                     </button>
                 </div>
@@ -390,7 +422,7 @@
                 <div class="product-info">
                     <p>Basic Card Pack (64)</p>
                     <span>$900,00</span>
-                    <button class="buy-btn">
+                    <button class="buy-btn" onclick="addToCart({})">
                         <i class="fa-solid fa-cart-plus"></i>
                     </button>
                 </div>
@@ -404,7 +436,7 @@
                 <div class="product-info">
                     <p>Basic Card Box (4)</p>
                     <span>$1200,00</span>
-                    <button class="buy-btn">
+                    <button class="buy-btn" onclick="addToCart({})">
                         <i class="fa-solid fa-cart-plus"></i>
                     </button>
                 </div>
@@ -418,7 +450,7 @@
                 <div class="product-info">
                     <p>Basic Card Box (8)</p>
                     <span>$1500,00</span>
-                    <button class="buy-btn">
+                    <button class="buy-btn" onclick="addToCart({})">
                         <i class="fa-solid fa-cart-plus"></i>
                     </button>
                 </div>
@@ -432,7 +464,7 @@
                 <div class="product-info">
                     <p>Rare Card Pack (32)</p>
                     <span>$125,00</span>
-                    <button class="buy-btn">
+                    <button class="buy-btn" onclick="addToCart({})">
                         <i class="fa-solid fa-cart-plus"></i>
                     </button>
                 </div>
@@ -446,7 +478,7 @@
                 <div class="product-info">
                     <p>Cleanser</p>
                     <span>$125,00</span>
-                    <button class="buy-btn">
+                    <button class="buy-btn" onclick="addToCart({})">
                         <i class="fa-solid fa-cart-plus"></i>
                     </button>
                 </div>
@@ -460,7 +492,7 @@
                 <div class="product-info">
                     <p>Basic Card Pack (64)</p>
                     <span>$900,00</span>
-                    <button class="buy-btn">
+                    <button class="buy-btn" onclick="addToCart({})">
                         <i class="fa-solid fa-cart-plus"></i>
                     </button>
                 </div>
